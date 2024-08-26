@@ -1,6 +1,17 @@
+import { getArticleByName } from '@/app/(server)/api';
 import React from 'react';
 
-export default function ArticlePage({ params }: Params) {
+export default async function ArticlePage({ params }: Params) {
   const { articleName } = params;
-  return <div>This is article {articleName}</div>;
+  const article = await getArticleByName(articleName);
+
+  return (
+    <>
+      <h1>{article.header}</h1>
+
+      {article.text.map((line, i) => (
+        <p key={i}>{line}</p>
+      ))}
+    </>
+  );
 }
