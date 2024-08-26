@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import { getAllArticles } from './(server)/api';
-import { ROUTING } from './routing';
+import { ArticlePreview } from './ArticlePreview';
 import AppLink from './shared/components/app-link';
 
 const ARTICLES_PER_PAGE = 10;
@@ -29,9 +28,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <ul>
         {articles.map((article) => (
           <li key={article.name}>
-            <AppLink href={ROUTING.article(article.name)}>
-              {article.header}
-            </AppLink>
+            <ArticlePreview name={article.name} text={article.header} />
           </li>
         ))}
       </ul>
